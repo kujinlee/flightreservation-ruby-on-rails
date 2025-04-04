@@ -1,0 +1,13 @@
+<h1>Reservation Confirmation</h1>
+<p>Reservation ID: <%= @reservation.id %></p>
+<p>Passenger Name: <%= @passenger.first_name %> <%= @passenger.last_name %></p>
+<p>Passenger Email: <%= @passenger.email %></p>
+<p>Flight Number: <%= @flight.flight_number %></p>
+<p>Departure City: <%= @flight.departure_city %></p>
+<p>Arrival City: <%= @flight.arrival_city %></p>
+<p>Date of Departure: <%= @flight.date_of_departure %></p>
+<p>Price: <%= @flight.price %></p>
+<p>Card Number: <%= @reservation.card_number %></p>
+<p>Amount: <%= @reservation.amount %></p>
+
+<%= link_to "Confirm Reservation", "/#{ENV['BASE_URL']}/completeReservation?reservation_id=#{@reservation.id}" %>

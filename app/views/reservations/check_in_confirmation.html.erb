@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-In Confirmation</title>
+</head>
+<body>
+    <h1>Check-In Confirmation</h1>
+    <p><strong>Message:</strong> Check-in completed successfully!</p>
+
+    <h2>Flight Details</h2>
+    <p><strong>Flight ID:</strong> <%= @reservation[:flight_id] %></p>
+
+    <h2>Passenger Details</h2>
+    <p><strong>Passenger ID:</strong> <%= @reservation[:passenger_id] %></p>
+
+    <h2>Reservation Details</h2>
+    <p><strong>Reservation ID:</strong> <%= @reservation[:id] %></p>
+    <p><strong>Number of Bags:</strong> <%= @reservation[:number_of_bags] %></p>
+    <p><strong>Checked In:</strong> <%= @reservation[:checked_in] ? 'Yes' : 'No' %></p>
+    <p><strong>Status:</strong> <%= @reservation[:status] %></p>
+    <p><strong>Amount:</strong> <%= @reservation[:amount] %></p>
+    <p><strong>Card Number:</strong> <%= @reservation[:card_number] %></p>
+    <p><strong>Created At:</strong> <%= @reservation[:createdAt] %></p>
+    <p><strong>Updated At:</strong> <%= @reservation[:updatedAt] %></p>
+</body>
+</html>

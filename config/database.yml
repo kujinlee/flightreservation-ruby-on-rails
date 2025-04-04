@@ -1,0 +1,26 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %> # Dynamically fetch DATABASE_HOST
+
+development:
+  <<: *default
+  database: reservation
+
+test:
+  <<: *default
+  database: reservation
+
+production:
+  <<: *default
+  database: reservation
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+
+# Fallback configuration for assets:precompile
+assets_precompile:
+  adapter: sqlite3
+  database: ":memory:"

@@ -1,0 +1,39 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_USERNAME: ${DATABASE_USERNAME}
+        DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+        DATABASE_HOST: ${DOCKER_DATABASE_HOST} # Override DATABASE_HOST with DOCKER_DATABASE_HOST during build
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_HOST: ${DOCKER_DATABASE_HOST} # Override DATABASE_HOST with DOCKER_DATABASE_HOST at runtime
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    command: bash -c "rm -f /app/tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0"
+
+  db:
+    image: mysql:8.0
+    container_name: flightreservation-ruby-on-rails-db
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${DATABASE_USERNAME}", "-p${DATABASE_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:

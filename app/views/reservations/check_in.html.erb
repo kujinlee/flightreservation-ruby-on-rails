@@ -1,0 +1,16 @@
+<h1>Check-In</h1>
+<p>Reservation ID: <%= @reservation.id %></p>
+<p>Passenger Name: <%= [@passenger.first_name, @passenger.middle_name, @passenger.last_name].compact.join(' ') %></p>
+<p>Flight Number: <%= @flight.flight_number %></p>
+<p>Departure City: <%= @flight.departure_city %></p>
+<p>Arrival City: <%= @flight.arrival_city %></p>
+<p>Date of Departure: <%= @flight.date_of_departure %></p>
+
+<%= form_with url: "/#{ENV['BASE_URL']}/completeCheckIn", method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :number_of_bags, "Number of Bags" %>
+    <%= form.number_field :number_of_bags %>
+  </div>
+  <%= form.hidden_field :reservation_id, value: @reservation.id %>
+  <%= form.submit "Complete Check-In" %>
+<% end %>

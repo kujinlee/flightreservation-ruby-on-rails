@@ -1,0 +1,35 @@
+<h1>Reserve Flight</h1>
+<p>Flight Number: <%= @flight.flight_number %></p>
+<p>Departure City: <%= @flight.departure_city %></p>
+<p>Arrival City: <%= @flight.arrival_city %></p>
+<p>Date of Departure: <%= @flight.date_of_departure %></p>
+<p>Price: <%= @flight.price %></p>
+
+<%= form_with url: createReservation_path, method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :first_name, "First Name" %>
+    <%= form.text_field :first_name %>
+  </div>
+  <div>
+    <%= form.label :last_name, "Last Name" %>
+    <%= form.text_field :last_name %>
+  </div>
+  <div>
+    <%= form.label :phone, "Phone" %>
+    <%= form.text_field :phone %>
+  </div>
+  <div>
+    <%= form.label :email, "Passenger Email" %>
+    <%= form.email_field :email %>
+  </div>
+  <div>
+    <%= form.label :card_number, "Card Number" %>
+    <%= form.text_field :card_number %>
+  </div>
+  <div>
+    <%= form.label :amount, "Amount" %>
+    <%= form.number_field :amount, step: 0.01 %>
+  </div>
+  <%= form.hidden_field :flight_id, value: @flight.id %>
+  <%= form.submit "Reserve Flight" %>
+<% end %>

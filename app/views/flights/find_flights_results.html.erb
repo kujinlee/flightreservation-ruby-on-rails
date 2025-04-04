@@ -1,0 +1,27 @@
+<h1>Flight Search Results</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Flight Number</th>
+      <th>Departure City</th>
+      <th>Arrival City</th>
+      <th>Date of Departure</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @flights.each do |flight| %>
+      <tr>
+        <td><%= flight.flight_number %></td>
+        <td><%= flight.departure_city %></td>
+        <td><%= flight.arrival_city %></td>
+        <td><%= flight.date_of_departure %></td>
+        <td><%= flight.price %></td>
+        <td>
+          <%= link_to "Reserve", reserve_path(flight_id: flight.id) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

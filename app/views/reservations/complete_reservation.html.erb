@@ -1,0 +1,17 @@
+<!-- filepath: /Users/kujinlee/code/copilotforjava/flightreservation-ruby-on-rails/app/views/reservations/complete_reservation.html.erb -->
+<h1>Reservation Payment</h1>
+
+<% if success %>
+  <p>Your payment was successful, and your reservation has been confirmed!</p>
+  <p>Reservation ID: <%= @reservation.id %></p>
+  <p>Passenger Name: <%= @passenger.full_name %></p>
+  <p>Flight Number: <%= @flight.flight_number %></p>
+  <p>Departure City: <%= @flight.departure_city %></p>
+  <p>Arrival City: <%= @flight.arrival_city %></p>
+  <p>Date of Departure: <%= @flight.date_of_departure %></p>
+  <p>Amount Paid: <%= @reservation.amount %></p>
+  <%= link_to "Proceed to Check-In", "/#{ENV['BASE_URL']}/checkIn?reservation_id=#{@reservation.id}" %>
+<% else %>
+  <p>Payment failed. Please try again.</p>
+  <%= link_to "Retry Payment", "/#{ENV['BASE_URL']}/completeReservation?reservation_id=#{@reservation.id}" %>
+<% end %>

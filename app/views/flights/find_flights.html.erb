@@ -1,0 +1,16 @@
+<h1>Find Flights</h1>
+<%= form_with url: findFlights_path, method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :departure_city, "Departure City" %>
+    <%= form.text_field :departure_city %>
+  </div>
+  <div>
+    <%= form.label :arrival_city, "Arrival City" %>
+    <%= form.text_field :arrival_city %>
+  </div>
+  <div>
+    <%= form.label :date_of_departure, "Date of Departure" %>
+    <%= form.date_field :date_of_departure %>
+  </div>
+  <%= form.submit "Search Flights" %>
+<% end %>
